@@ -1,0 +1,76 @@
+@import "tailwindcss";
+@import './fonts.css';
+@import './custom.css';
+
+:root {
+  --background: #F9FAFB;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@theme {
+  --font-heading: 'LALIGAHeadline', sans-serif;
+  --font-body: 'LALIGAText', sans-serif;
+  --color-main: #FF4B44;
+  --color-secondary: #00001B;
+  --color-third: #5A7CF1;
+  --color-fourth: #fff;
+  --color-light-gray:#F4F4F4;
+  --color-mid-gray:#EAEAEA;
+  --color-dark-third: rgb(15, 57, 184)
+}
+@layer utilities {
+  .font-var-heading-500 {
+    font-variation-settings: "wght" 500, "wdth" 500;
+  }
+
+  .font-var-heading-600 {
+    font-variation-settings: "wght" 600, "wdth" 500;
+  }
+
+  .font-var-heading-wide {
+    font-variation-settings: "wght" 500, "wdth" 700;
+  }
+
+  .font-var-heading-wg {
+    font-variation-settings: "wght" 800, "wdth" 440;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+@layer base {
+  body {
+    @apply leading-none;
+  }
+}
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'LALIGAText', 'Futura Maxi', sans-serif;
+      speak: never;
+    font-style: normal;
+    font-weight: 400;
+    -webkit-font-feature-settings: normal;
+    -moz-font-feature-settings: normal;
+    font-feature-settings: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+.btn{
+  cursor: pointer;
+  outline: none;
+}
