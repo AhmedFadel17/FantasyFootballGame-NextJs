@@ -18,7 +18,7 @@ export default function Header() {
     pathname === path ? 'text-main font-bold' : 'text-fourth hover:text-main';
 
   return (
-    <header className='bg-secondary text-fourth shadow-md py-4 px-6 flex items-center justify-between'>
+    <header className='sticky top-0 z-50 bg-secondary/90 backdrop-blur shadow-md py-4 px-6 flex items-center justify-between'>
       <div className='flex items-center'>
         <Image src={appConfigs.logo} width={50} height={100} alt='' />
         <h1 className={`text-xl font-bold text-main`}>{appConfigs.appName}</h1>
@@ -34,7 +34,6 @@ export default function Header() {
             <span className='pl-1'>{title}</span>
           </Link>
         ))}
-
       </nav>
       <div className='flex items-center'>
         {isAuthenticated ? (
@@ -56,7 +55,6 @@ export default function Header() {
             <span className='pl-1'>Login</span>
           </Link>
         )}
-
       </div>
     </header>
   );

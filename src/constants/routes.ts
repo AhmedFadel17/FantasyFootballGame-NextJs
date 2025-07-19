@@ -1,12 +1,13 @@
 
 import {FaHome, FaTshirt, FaExchangeAlt, FaChartLine, FaCog ,FaTrophy, FaUsers,  FaInfoCircle, FaPhone, FaFacebookF, FaInstagram, FaTwitter, FaYoutube, FaRegQuestionCircle, FaClipboardList, FaUserFriends, FaShieldAlt } from "react-icons/fa";
 import { VscActivateBreakpoints,VscGitPullRequestCreate } from "react-icons/vsc";
+import { GoLaw } from "react-icons/go";
+import { IoLogoGameControllerB } from "react-icons/io";
 
 export const navLinks = [
   { title: 'Home', path: '/', icon: FaHome },
-  { title: 'Leagues', path: '/leagues', icon: FaTrophy },
-  { title: 'My Team', path: '/my-team', icon: FaUsers },
-  { title: 'Leaderboard', path: '/leaderboard', icon: FaChartLine },
+  { title: 'How To Play', path: '/how-to-play', icon: IoLogoGameControllerB },
+  { title: 'Rules', path: '/rules', icon: GoLaw},
   { title: 'About', path: '/about', icon: FaInfoCircle },
   { title: 'Contact', path: '/contact', icon: FaPhone },
 ];
@@ -41,16 +42,15 @@ export const footerData = {
       links: [
         { title: 'How to Play', path: '/how-to-play' },
         { title: 'Game Rules', path: '/rules' },
-        { title: 'Player Stats', path: '/player-stats' },
+        { title: 'About Us', path: '/about' },
       ]
     },
     {
       title: "My Account",
       icon: FaUserFriends,
       links: [
-        { title: 'My Team', path: '/my-team' },
-        { title: 'My Leagues', path: '/my-leagues' },
-        { title: 'Transfers', path: '/transfers' },
+        { title: 'Dashboard', path: '/dashboard' },
+        { title: 'Register', path: '/register' },
       ]
     },
     {

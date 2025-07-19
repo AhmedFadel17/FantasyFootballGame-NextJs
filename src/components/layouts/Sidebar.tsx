@@ -17,7 +17,7 @@ export default function Sidebar() {
   const pathname = usePathname();
   const isAuthenticated = useSelector(selectIsAuthenticated);
   const user = useSelector(selectUser);
-  const handleLogout = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleLogout = (event: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     dispatch(logout());
     router.push('/login');
@@ -31,8 +31,8 @@ export default function Sidebar() {
     pathname === path ? 'text-main bg-secondary font-bold' : 'text-fourth';
 
   return (
-    <div className="h-screen w-full bg-white relative flex overflow-hidden">
-      <div className="h-full w-16 flex flex-col space-y-10 items-center justify-center relative bg-third">
+    <div className="fixed left-0 top-auto z-40 h-screen w-16 bg-white flex overflow-hidden">
+      <div className="h-full w-16 flex flex-col space-y-10 items-center justify-start relative bg-third py-10">
         {links.map(({ title, path, icon: Icon }) => (
           <Link
             key={path}
@@ -46,7 +46,7 @@ export default function Sidebar() {
         ))}
         <button
           key={"logout"}
-          onClick={(e) => handleLogout(e)}
+          onClick={handleLogout}
           className={`flex items-center rounded-lg cursor-pointer text-dark-third bg-fourth hover:duration-300 hover:ease-linear focus:bg-secondary focus:text-main gap-1}`}
         >
           <div className="h-10 w-10 flex items-center justify-center">

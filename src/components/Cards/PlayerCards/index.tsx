@@ -8,14 +8,14 @@ import { JSX } from "react";
 
 
 type PitchPlayerCardProps = {
-  action: JSX.Element,
-  actionBtn: JSX.Element,
-  value: string | number,
+  action?: JSX.Element | null,
+  actionBtn?: JSX.Element | null,
+  value?: string | number | null,
   player: FantasyPlayer | null
   position: string,
   allowed?: boolean,
 }
-export const PitchPlayerCard = ({ action, value, player, position, actionBtn, allowed=true }: PitchPlayerCardProps) => {
+export const PitchPlayerCard = ({ action = null, value = null, player, position, actionBtn = null, allowed = true }: PitchPlayerCardProps) => {
   if (!player) {
     return (
       <div className='w-35 h-45 bg-secondary/80 border border-dashed border-gray-500 text-white rounded'>
@@ -35,7 +35,7 @@ export const PitchPlayerCard = ({ action, value, player, position, actionBtn, al
     name,
     team,
     status,
-    position:pos,
+    position: pos,
     imageSrc,
     shirtNumber
   } = player;
@@ -46,12 +46,12 @@ export const PitchPlayerCard = ({ action, value, player, position, actionBtn, al
 
   return (
     <div
-  className={`relative font-heading font-bold font-var-heading-500 w-35 h-45 rounded-lg overflow-hidden ${!allowed ? 'opacity-60' : ''}`}
-  style={{
-    backgroundImage: `linear-gradient(90deg, ${team?.mainColor}, ${team?.secondaryColor} 19%, ${team?.mainColor} 31%, ${team?.mainColor} 61%)`,
-  }}
->
-  {/* Background pattern layer (optional overlay) */}
+      className={`relative font-heading font-bold font-var-heading-500 w-35 h-45 rounded-lg overflow-hidden ${!allowed ? 'opacity-60' : ''}`}
+      style={{
+        backgroundImage: `linear-gradient(90deg, ${team?.mainColor}, ${team?.secondaryColor} 19%, ${team?.mainColor} 31%, ${team?.mainColor} 61%)`,
+      }}
+    >
+      {/* Background pattern layer (optional overlay) */}
       <div className="absolute inset-0 opacity-80 bg-[url('/main/pattern.svg')] bg-no-repeat bg-top bg-cover" />
 
       {/* Player Image */}
@@ -67,13 +67,16 @@ export const PitchPlayerCard = ({ action, value, player, position, actionBtn, al
       {/* Player Info */}
       <div className="absolute bottom-0 left-0 right-0 z-20 text-white backdrop-blur-md bg-black/30 box-shadow-custom">
         <div className="text-lg font-bold leading-tight pt-1 px-2 text-center mb-1">{name}</div>
-        <div className="bg-secondary text-white px-2 py-[2px] text-center font-heading font-bold font-var-heading-500">{value}</div>
+        {value !== null &&
+          <div className="bg-secondary text-white px-2 py-[2px] text-center font-heading font-bold font-var-heading-500">{value}</div>
+        }
       </div>
       <div className="absolute top-0 w-8 h-full bottom-0 left-2 text-center z-15 text-white backdrop-blur-md bg-black/30 box-shadow-custom">
         <div className="items-center py-2">
           <img
             src={team?.logoSrc}
             alt={team?.abbreviation}
+            loading="lazy"
             className="w-full"
           />
           {formatPositionDiv(pos)}
@@ -88,7 +91,7 @@ export const PitchPlayerCard = ({ action, value, player, position, actionBtn, al
       </div>
 
       {/* Border/Frame */}
-      <div className={`absolute inset-0 border-1 border-[${team?.mainColor}] rounded-lg z-30 pointer-events-none`} />
+      <div className={`absolute inset-0 border-1 border-[#000] rounded-lg z-30 pointer-events-none`} />
     </div>
 
   )
@@ -101,7 +104,7 @@ export const getLastName = (fullName: string): string => {
 };
 
 const formatPositionDiv = (position: PlayerPosition): string => {
-    let res=(<></>);
+  let res = (<></>);
   switch (position) {
     case "Goalkeeper":
       res = (<p className="bg-yellow-500">GK</p>);
