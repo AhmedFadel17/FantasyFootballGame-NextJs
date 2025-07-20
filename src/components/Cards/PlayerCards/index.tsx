@@ -3,6 +3,7 @@ import { TiInfo } from "react-icons/ti";
 import { BsInfoCircleFill } from "react-icons/bs";
 import { IoPersonAddOutline } from "react-icons/io5";
 import { JSX } from "react";
+  import { getPositionShortName,  getPositionBgClass } from "@/utils/playerPositionUtils";
 
 
 
@@ -44,6 +45,9 @@ export const PitchPlayerCard = ({ action = null, value = null, player, position,
     ? <BsInfoCircleFill className="text-lg text-mid-gray" />
     : <TiInfo className="text-2xl text-red-500" />;
 
+
+const posName = getPositionShortName(player.position); // e.g., "MID"
+const posBackground = getPositionBgClass(player.position); // e.g., "#FFD700"
   return (
     <div
       className={`relative font-heading font-bold font-var-heading-500 w-35 h-45 rounded-lg overflow-hidden ${!allowed ? 'opacity-60' : ''}`}
@@ -79,7 +83,7 @@ export const PitchPlayerCard = ({ action = null, value = null, player, position,
             loading="lazy"
             className="w-full"
           />
-          {formatPositionDiv(pos)}
+          <p className={`${posBackground}`}>{posName}</p>
           <p className="mb-1">#{shirtNumber}</p>
           {action}
         </div>
@@ -96,28 +100,4 @@ export const PitchPlayerCard = ({ action = null, value = null, player, position,
 
   )
 
-};
-
-export const getLastName = (fullName: string): string => {
-  const parts = fullName?.trim()?.split(' ') || '';
-  return parts.length > 1 ? parts[parts.length - 1] : fullName;
-};
-
-const formatPositionDiv = (position: PlayerPosition): string => {
-  let res = (<></>);
-  switch (position) {
-    case "Goalkeeper":
-      res = (<p className="bg-yellow-500">GK</p>);
-      break;
-    case "Defender":
-      res = (<p className="bg-blue-500">DEF</p>);
-      break;
-    case "Midfielder":
-      res = (<p className="bg-green-500">MID</p>);
-      break;
-    case "Forward":
-      res = (<p className="bg-red-500">FRW</p>);
-      break;
-  }
-  return res;
 };

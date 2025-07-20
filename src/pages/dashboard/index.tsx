@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectUser } from '@/store/selectors/authSelectors';
-import { FaRegStar } from "react-icons/fa";
+import { FaRegStar, FaUserCircle } from "react-icons/fa";
 import Image from 'next/image';
 import { SimpleCard } from '@/components/Cards/SimpleCard';
 import Link from 'next/link';
@@ -15,6 +15,7 @@ import { useGetDataQuery } from '@/services/api';
 import { RxTextAlignMiddle } from "react-icons/rx";
 import { PiRankingThin } from "react-icons/pi";
 import { CustomCardContainer } from '@/components/Cards/CustomCardContainer';
+import { cn } from '@/utils/twMerge'; 
 
 const PlayerDashboardHome = () => {
   const user = useSelector(selectUser);
@@ -77,13 +78,38 @@ const PlayerDashboardHome = () => {
 
   return (
     <div className="space-y-6 p-12">
-      <div className="flex justify-center items-center my-6">
+
+      <div className="flex justify-center items-center my-6 px-6">
         <div
-          className="text-2xl font-bold bg-main p-4 uppercase px-12 text-white rounded-xl shadow-lg transition-transform duration-300 hover:scale-105"
+          className={cn(
+            "relative flex items-center gap-6 px-8 py-6 rounded-2xl shadow-xl bg-gradient-to-r from-main to-secondary transition-transform duration-300 hover:scale-105 w-full"
+          )}
         >
-          👋 Welcome back, {user?.name || 'Player'}!
+          {/* Avatar or fallback icon */}
+          <div className="flex-shrink-0">
+            {user?.avatar ? (
+              <Image
+                src={user.avatar}
+                alt={user.name || "User Avatar"}
+                width={64}
+                height={64}
+                className="rounded-full border-4 border-white shadow"
+              />
+            ) : (
+              <FaUserCircle className="text-white text-6xl drop-shadow" />
+            )}
+          </div>
+          <div>
+            <div className="text-2xl md:text-3xl font-bold text-white uppercase">
+              👋 Welcome back, {user?.name || 'Player'}!
+            </div>
+            <div className="text-white text-opacity-80 mt-1 text-base md:text-lg font-medium">
+              Ready for another week of fantasy football action?
+            </div>
+          </div>
         </div>
       </div>
+      
 
       {/* <div className="grid grid-cols-3 gap-6">
         <div className='px-6'>

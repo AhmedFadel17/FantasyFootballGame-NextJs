@@ -6,6 +6,7 @@ interface JwtPayload {
   role?: string;
   email?: string;
   name?: string;
+  hasTeam?: boolean;
 }
 
 interface AuthState {

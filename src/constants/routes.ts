@@ -17,9 +17,9 @@ export const sideLinks = [
   { title: 'My Points', path: '/dashboard/my-points', icon: VscActivateBreakpoints },
   { title: 'My Team', path: '/dashboard/my-team', icon: FaTshirt },
   { title: 'Transfers', path: '/dashboard/transfers', icon: FaExchangeAlt },
-  { title: 'Pick Team', path: '/dashboard/pick-team', icon: VscGitPullRequestCreate },
-  { title: 'Leaderboard', path: '/dashboard/leaderboard', icon: FaChartLine },
-  { title: 'Settings', path: '/dashboard/settings', icon: FaCog },
+  { title: 'Pick Team', path: '/dashboard/pick-team', icon: VscGitPullRequestCreate},
+  // { title: 'Leaderboard', path: '/dashboard/leaderboard', icon: FaChartLine },
+  // { title: 'Settings', path: '/dashboard/settings', icon: FaCog },
 ];
 
 export const sideAdminLinks = [

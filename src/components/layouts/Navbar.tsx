@@ -14,6 +14,7 @@ export default function Header() {
   const pathname = usePathname();
   const isAuthenticated = useSelector(selectIsAuthenticated);
   const user = useSelector(selectUser);
+  console.log("USER",user)
   const isActive = (path: string) =>
     pathname === path ? 'text-main font-bold' : 'text-fourth hover:text-main';
 
