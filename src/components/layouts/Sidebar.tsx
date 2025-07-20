@@ -9,7 +9,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '@/store/slices/authSlice';
 import { CiLogout } from "react-icons/ci";
 import { useRouter } from 'next/router';
-
+import { cn } from '@/utils/twMerge'; 
+import { normalizePath } from '@/utils/normalizePath';
 export default function Sidebar() {
   const dispatch = useDispatch();
   const router = useRouter();
@@ -28,7 +29,9 @@ export default function Sidebar() {
   const links = role === UserRole.Admin ? sideAdminLinks : sideLinks;
 
   const isActive = (path: string) =>
-    pathname === path ? 'text-main bg-secondary font-bold' : 'text-fourth';
+    normalizePath(pathname) === normalizePath(path)
+      ? 'text-main bg-secondary font-bold'
+      : 'text-fourth';
 
   return (
     <div className="fixed left-0 top-auto z-40 h-screen w-16 bg-white flex overflow-hidden">
@@ -37,7 +40,10 @@ export default function Sidebar() {
           <Link
             key={path}
             href={path}
-            className={`flex items-center rounded-lg cursor-pointer hover:text-main hover:bg-fourth hover:duration-300 hover:ease-linear focus:bg-secondary focus:text-main gap-1 ${isActive(path)}`}
+            className={cn(
+              'flex items-center rounded-lg cursor-pointer hover:text-main hover:bg-fourth hover:duration-300 hover:ease-linear focus:bg-secondary focus:text-main gap-1',
+               isActive(path)
+            )}
           >
             <div className="h-10 w-10 flex items-center justify-center">
               <Icon className="text-inherit" />

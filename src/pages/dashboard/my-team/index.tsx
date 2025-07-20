@@ -149,3 +149,6 @@ const PlayerDashboardHome = () => {
 };
 
 export default PlayerDashboardHome;
+
+// Require authentication for this page
+(PlayerDashboardHome as any).requiresAuth = true;

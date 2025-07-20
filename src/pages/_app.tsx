@@ -12,6 +12,7 @@ import AppInitializer from '@/init/AppInitializer';
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
+  requiresAuth?:boolean
 };
 
 type AppPropsWithLayout = AppProps & {
@@ -35,7 +36,14 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
             },
           }}
         />
-        {getLayout(<Component {...pageProps} />)}
+        {Component.requiresAuth
+          ? getLayout(
+              <AuthWrapper>
+                <Component {...pageProps} />
+              </AuthWrapper>
+            )
+          : getLayout(<Component {...pageProps} />)
+        }
       </PersistGate>
     </Provider>
   );

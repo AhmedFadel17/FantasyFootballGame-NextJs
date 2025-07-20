@@ -177,3 +177,6 @@ const TransfersPage = () => {
 };
 
 export default TransfersPage;
+
+// Require authentication for this page
+(TransfersPage as any).requiresAuth = true;
